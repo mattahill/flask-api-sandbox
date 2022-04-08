@@ -1,4 +1,14 @@
+components:
+  schemas:
+    HTTPError:
+      properties:
+        detail:
+          type: object
+        message:
+          type: string
+      type: object
 info:
+  description: This is a test api sandbox utilizing api flask to generate documentation
   title: APIFlask
   version: 0.1.0
 openapi: 3.0.3
@@ -23,18 +33,19 @@ paths:
           content:
             application/json:
               schema: {}
-          description: Successful response
+          description: OK
       summary: hello world
   /404:
     get:
       description: this is the 404 page
       parameters: []
       responses:
-        '200':
+        '404':
           content:
             application/json:
-              schema: {}
-          description: Successful response
+              schema:
+                $ref: '#/components/schemas/HTTPError'
+          description: Not Found
       summary: 404 page
 tags: []
 

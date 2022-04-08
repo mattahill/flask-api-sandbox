@@ -6,6 +6,8 @@ from apiflask import APIFlask
 # app = Flask(__name__)
 app = APIFlask(__name__, enable_openapi=False)
 app.config['SPEC_FORMAT'] = 'yaml'
+app.config['DESCRIPTION'] = 'This is a test api sandbox utilizing api flask to generate documentation'
+
 
 @app.route("/")
 def index():
@@ -16,6 +18,7 @@ def index():
 
 
 @app.route("/200")
+@app.doc(responses=[200])
 def hello_world():
     """hello world
     this is the hello world route
@@ -24,6 +27,7 @@ def hello_world():
 
 
 @app.route("/404")
+@app.doc(responses=[404])
 def return_404():
     """404 page
     this is the 404 page
